@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Descent Lesson</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .lesson-container {
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #1a73e8;
+            font-size: 1.5em;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #1a73e8;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #155cb0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .placeholder-image {
+            height: 150px;
+            background-color: #e0e7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1em;
+            color: #6b7280;
+        }
+
+        .formula {
+            background-color: #f1f5f9;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-left: 5px solid #1a73e8;
+            font-family: monospace;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <!-- Introduction -->
+        <section id="intro" class="lesson-section">
+            <div class="placeholder-image">Image Placeholder</div>
+            <p>Imagine you're hiking down a mountain in thick fog. You can't see the path ahead, but you can feel the slope beneath your feet. How do you ensure you're heading toward the valley below and not off a cliff?</p>
+            <p>In such a situation, a sensible strategy is to feel the steepest downward slope and take a small step in that direction. By repeatedly doing this, you'd gradually make your way to the bottom.</p>
+            <p>This intuitive approach is the essence of gradient descent—a fundamental algorithm in optimization and machine learning used to find the minimum of a function.</p>
+            <button onclick="showNextSection('gradientSection')">Continue</button>
+        </section>
+
+        <!-- The Gradient Section -->
+        <section id="gradientSection" class="lesson-section hidden">
+            <h2>The Gradient: Your Directional Guide</h2>
+            <p>First, let's understand the concept of a gradient. In simple terms, it's like a compass pointing in the direction of the steepest ascent of a function.</p>
+            <div class="placeholder-image">Placeholder Image</div>
+            <p>Mathematically, for a function \( f(x) \) in one dimension, the gradient is the derivative \( f'(x) \).</p>
+            <div class="formula">
+                <p>In multiple dimensions, the gradient is a vector of partial derivatives:</p>
+                \[
+                \nabla f(x) = \left( \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \dots, \frac{\partial f}{\partial x_n} \right)
+                \]
+            </div>
+            <p>This vector points in the direction where the function increases the most.</p>
+            <div class="placeholder-image">Placeholder Visual Aid</div>
+            <button onclick="showNextSection('steppingSection')">Continue</button>
+        </section>
+
+        <!-- Stepping Towards the Minimum Section -->
+        <section id="steppingSection" class="lesson-section hidden">
+            <h2>Stepping Towards the Minimum</h2>
+            <p>To minimize a function, we do the opposite—we move in the direction of the steepest descent.</p>
+            <div class="formula">
+                <p>The basic update rule in gradient descent is:</p>
+                \[
+                x_{\text{new}} = x_{\text{old}} - \alpha \nabla f(x_{\text{old}})
+                \]
+                <p>Where:</p>
+                <ul>
+                    <li>\( x_{\text{old}} \): Current position.</li>
+                    <li>\( \alpha \): Learning rate, a small positive number controlling the step size.</li>
+                    <li>\( \nabla f(x_{\text{old}}) \): Gradient at the current position.</li>
+                </ul>
+            </div>
+            <button onclick="showNextSection('practiceSection')">Continue</button>
+        </section>
+
+        <!-- Practice Section -->
+        <section id="practiceSection" class="lesson-section hidden">
+            <h2>Let's put this into practice!</h2>
+            <p>Suppose we have the function \( f(x) = x^2 \). Starting from \( x_0 = 4 \) and using a learning rate \( \alpha = 0.1 \).</p>
+            <div class="formula">
+                <p>Calculate the gradient at \( x_0 \):</p>
+                \[
+                f'(x) = 2x
+                \]
+                \[
+                f'(4) = 2 \times 4 = 8
+                \]
+                <p>Update \( x \):</p>
+                \[
+                x_1 = x_0 - \alpha f'(x_0) = 4 - 0.1 \times 8 = 3.2
+                \]
+                <p>Answer: After one iteration, \( x = 3.2 \).</p>
+            </div>
+            <button onclick="showNextSection('twoDSection')">Continue</button>
+        </section>
+
+        <!-- Two Dimensions Section -->
+        <section id="twoDSection" class="lesson-section hidden">
+            <h2>Extending to Two Dimensions</h2>
+            <p>Now, let's explore gradient descent in two dimensions.</p>
+            <div class="formula">
+                <p>Function:</p>
+                \[
+                f(x, y) = x^2 + y^2
+                \]
+            </div>
+            <p>This function represents a bowl-shaped surface with a minimum at \( (0, 0) \).</p>
+            <div class="placeholder-image">Placeholder Visual Aid</div>
+            <p>Starting from \( (x_0, y_0) = (3, 4) \) and using \( \alpha = 0.1 \).</p>
+            <div class="formula">
+                <p>Compute the gradients:</p>
+                \[
+                \frac{\partial f}{\partial x} = 2x \implies \frac{\partial f}{\partial x}(3, 4) = 6
+                \]
+                \[
+                \frac{\partial f}{\partial y} = 2y \implies \frac{\partial f}{\partial y}(3, 4) = 8
+                \]
+                <p>Update \( x \) and \( y \):</p>
+                \[
+                x_1 = x_0 - \alpha \frac{\partial f}{\partial x} = 3 - 0.1 \times 6 = 2.4
+                \]
+                \[
+                y_1 = y_0 - \alpha \frac{\partial f}{\partial y} = 4 - 0.1 \times 8 = 3.2
+                \]
+                <p>Answer: After one iteration, \( (x, y) = (2.4, 3.2) \).</p>
+            </div>
+            <button onclick="showNextSection('summarySection')">Continue</button>
+        </section>
+
+        <!-- Summary Section -->
+        <section id="summarySection" class="lesson-section hidden">
+            <h2>Summary and Key Takeaways</h2>
+            <p>Gradient Descent is an iterative method to find the minimum of a function by moving in the opposite direction of the gradient.</p>
+            <ul>
+                <li>The learning rate \( \alpha \) controls the step size.</li>
+                <li>If \( \alpha \) is too large, the steps may overshoot the minimum.</li>
+                <li>If \( \alpha \) is too small, convergence is slow.</li>
+                <li>In higher dimensions, we deal with gradient vectors.</li>
+            </ul>
+            <p>In the next lesson, we'll explore how to calculate gradients and update trainable parameters in regression models, building on what you've learned and showing you how gradient descent is used in real-world machine learning scenarios.</p>
+        </section>
+    </div>
+
+    <script>
+        // JavaScript for Interactivity
+        function showNextSection(sectionId) {
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
